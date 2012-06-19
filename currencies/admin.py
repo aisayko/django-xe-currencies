@@ -7,7 +7,7 @@ __all__ = ['CurrencyItemAdmin', ]
 
 
 class CurrencyItemAdmin(admin.ModelAdmin):
-    """ Docstring """
+    """ CurrencyItem Admin """
     list_display = ('cname', 'csymbol', 'crate_base', 'crate_base_inverse',
                     'is_base')
     search_fields = ('cname', 'csymbol',)

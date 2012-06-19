@@ -6,10 +6,12 @@ import urllib2
 
 
 class Command(BaseCommand):
-    """ Docstr """
+    """
+    Synchronize CurrencyItem's with XE rates database
+    """
     def handle(self, *args, **kwargs):
         """ Docstr """
-        from banking.models import Currency
+        from currencies.models import CurrencyItem
 
         dom = minidom.parse(urllib2.urlopen(settings.XE_DATAFEED_URL))
         currencies = dom.getElementsByTagName('currency')
@@ -36,11 +38,11 @@ class Command(BaseCommand):
 
                 if model_data:
                     try:
-                        obj = Currency.objects.get(
+                        obj = CurrencyItem.objects.get(
                             csymbol=model_data['csymbol']
                         )
-                    except Currency.DoesNotExist:
-                        obj = Currency()
+                    except CurrencyItem.DoesNotExist:
+                        obj = CurrencyItem()
 
                     obj.csymbol = model_data['csymbol']
                     obj.cname = model_data['cname']
@@ -48,7 +50,5 @@ class Command(BaseCommand):
                     obj.crate_base_inverse = model_data['crate_base_inverse']
                     obj.is_base = model_data['is_base']
                     obj.save()
-                    # TODO: add logger here
         else:
-            # TODO: add logger here
-            pass
+            print 'There are some errors occured.'

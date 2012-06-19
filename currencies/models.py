@@ -6,7 +6,9 @@ __all__ = ['CurrencyItem', ]
 
 
 class CurrencyItem(models.Model):
-    """ Docstring """
+    """
+    Represent Currency in local database
+    """
     csymbol = models.CharField(max_length=3, unique=True,
                                verbose_name=_('Symbol'))
     cname = models.CharField(max_length=64,

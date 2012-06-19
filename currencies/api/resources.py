@@ -9,7 +9,9 @@ import decimal
 
 
 def exchange(csymbol_from, csymbol_to, amount):
-    """ Docstring """
+    """
+    Make currency exchange logic
+    """
     try:
         amount = decimal.Decimal(amount)
     except decimal.InvalidOperation:
