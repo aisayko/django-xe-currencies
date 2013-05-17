@@ -11,7 +11,7 @@ class Command(BaseCommand):
     """
     def handle(self, *args, **kwargs):
         """ Docstr """
-        from currencies.models import CurrencyItem
+        from xe_currencies.models import CurrencyItem
 
         dom = minidom.parse(urllib2.urlopen(settings.XE_DATAFEED_URL))
         currencies = dom.getElementsByTagName('currency')
@@ -38,9 +38,7 @@ class Command(BaseCommand):
 
                 if model_data:
                     try:
-                        obj = CurrencyItem.objects.get(
-                            csymbol=model_data['csymbol']
-                        )
+                        obj = CurrencyItem.objects.get(csymbol=model_data['csymbol'])
                     except CurrencyItem.DoesNotExist:
                         obj = CurrencyItem()
 

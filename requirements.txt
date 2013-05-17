@@ -1,2 +1,0 @@
-django-tastypie==0.9.11
-django==1.4

@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from currencies.models import CurrencyItem
+from xe_currencies.models import CurrencyItem
 
 
 __all__ = ['CurrencyItemAdmin', ]

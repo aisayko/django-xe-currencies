@@ -3,7 +3,7 @@ from django.conf.urls import url
 from tastypie.resources import ModelResource
 from tastypie.utils import trailing_slash
 
-from currencies.models import CurrencyItem
+from xe_currencies.models import CurrencyItem
 
 import decimal
 

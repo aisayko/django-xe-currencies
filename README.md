@@ -1,32 +1,52 @@
-Welcome to django-currencies-api.
+django-xe-currencies
+===
 
-This module allows you to create your own currency exchange API synced with XE datafeed service.
+**django-xe-currencies** allows you to create your own currency exchange API synced with XE datafeed service.
 
-INSTALLATION:
+Quickstart:
+===
 
-1) Add 'currencies' to INSTALLED_APPS
+Install django-xe-currencies:
 
-2) Add url(r'^currencies/', include('currencies.urls')) to your root urls config
+    $ pip install django-xe-currencies
 
-3) If you have XE account specify XE_DATAFEED_URL in your settings.py
+Add tinymce and xe_currencies to INSTALLED_APPS in settings.py for your project:
 
-    a) XE_DATAFEED_URL = 'http://www.xe.com/dfs/datafeed2.cgi?xeuser'
+    INSTALLED_APPS = (
+        ...
+        'xe_currencies',
+    )
+    
+Add xe_currencies.urls to urls.py for your project:
 
-    b) run python manage.py xe_sync
+    urlpatterns = patterns('',
+        ...
+        url(r'^currencies/', include('xe_currencies.urls'))
+    )
+
+Specify XE_DATAFEED_URL in your settings.py:
+
+    XE_DATAFEED_URL = 'http://www.xe.com/dfs/datafeed2.cgi?xeuser'
+
+To make a synchronization with XE datafeed run:
+
+    python manage.py xe_sync
 
 
-To install requirements see requirements.txt
+Access api at the next url:
 
-USAGE:
-
-After you install application you can access api at the next url:
-
-    http://example.com/currencies/api/v1/currencies/exchange/?from=EUR&to=USD&amount=100&format=json
+    http://yourdomain.com/currencies/api/v1/currencies/exchange/?from=EUR&to=USD&amount=100&format=json
 
 This example will return exchange data in JSON format:
 
-    {"from": "EUR", "result": "143.45 USD", "to": "USD"}
+    {"from": "EUR", "to": "USD", "result": "143.45 USD"}
 
-To retrieve currencies list use next url:
+To retrieve currencies list use:
 
     http://example.com/currencies/api/v1/currencies/?format=json
+    
+Using exchange in your code:
+    
+    from xe_currencies.api.resources import exchange
+    
+    exchange('EUR', 'USD', 100)
