@@ -50,3 +50,7 @@ Using exchange in your code:
     from xe_currencies.api.resources import exchange
     
     exchange('EUR', 'USD', 100)
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/aisayko/django-xe-currencies/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
